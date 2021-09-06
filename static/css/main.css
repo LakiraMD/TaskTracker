@@ -1,5 +1,12 @@
 body{
 	margin: 2;
 	font-family: sans-serif;
-	align-items: center;
+	
+}
+.content{
+	text-align: center;
+}
+.table{
+	margin-left: auto;
+  	margin-right: auto;
 }
