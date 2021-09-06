@@ -1,19 +1,7 @@
-<!-- <!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title>Hello World</title>
-</head>
-<body>
-	Hello Lakira
-
-</body>
-</html> -->
-
 {% extends 'base.html' %}
 
 {% block head %}
-<title>Task Master</title>
+<title>Task Master | Update</title>
 {% endblock %}
 
 {% block body %}
@@ -23,7 +11,7 @@
 
 	
 	<form action="/update/{{task.id}}" method="POST">
-		<input type="text" name="content" id="content">
+		<input type="text" name="content" id="content" value="{{task.content}}">
 		<input type="submit" value="Add Task">
 	</form>
 </div>

@@ -19,12 +19,10 @@ class ToDo(db.Model):
 
 
 @app.route('/', methods=['POST','GET'])
-
 def index():
 	if request.method == 'POST':
 		task_content = request.form['content']
 		new_task = ToDo(content=task_content)
-		
 		try:
 			db.session.add(new_task)
 			db.session.commit()
@@ -32,11 +30,9 @@ def index():
 		except :
 			return 'Ther was an issue post your data'
 
-
 	else:
 		task = ToDo.query.order_by(ToDo.date_created).all()
 		return render_template('index.html', task=task)
-
 
 @app.route('/delete/<int:id>',)
 def delete(id):
@@ -49,10 +45,8 @@ def delete(id):
 	except:
 		return 'Ther was an issue deleting this task'
 
-
 @app.route('/update/<int:id>',methods=['GET','POST'])
 def update(id):
-
 	task = ToDo.query.get_or_404(id)
 	if request.method == 'POST':
 		task.content = request.form['content']
@@ -62,12 +56,8 @@ def update(id):
 			return redirect('/')
 		except:
 			return 'Ther was an issue updating your data'
-
-
 	else:
 		return render_template('update.html', task=task)
-
-	
 
 if __name__ == '__main__':
 	app.run(debug=True)
