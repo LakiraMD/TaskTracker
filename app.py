@@ -30,7 +30,8 @@ def index():
 			db.session.commit()
 			return redirect('/')
 		except :
-			return "never fail"
+			return 'Ther was an issue post your data'
+
 
 	else:
 		task = ToDo.query.order_by(ToDo.date_created).all()
@@ -46,14 +47,23 @@ def delete(id):
 		db.session.commit()
 		return redirect('/')
 	except:
-		return "never give up"
+		return 'Ther was an issue deleting this task'
+
 
 @app.route('/update/<int:id>',methods=['GET','POST'])
 def update(id):
 
 	task = ToDo.query.get_or_404(id)
 	if request.method == 'POST':
-		pass
+		task.content = request.form['content']
+		
+		try:
+			db.session.commit()
+			return redirect('/')
+		except:
+			return 'Ther was an issue updating your data'
+
+
 	else:
 		return render_template('update.html', task=task)
 
